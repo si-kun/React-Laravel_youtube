@@ -13,11 +13,15 @@ class ShopController extends Controller
     {
         $shops = Shop::with('reviews')->get();
 
+        // dd($shops);//デバッグ
+
         // 新着のレビューを5件取得
         $newReviews = Review::with('shop','user')
         ->orderBy('created_at', 'desc')
         ->take(5)
         ->get();
+
+        // dd($newReviews); //デバッグ
 
         return Inertia::render('Home',[
             'shops' => $shops,
