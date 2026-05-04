@@ -28,4 +28,30 @@ class ShopController extends Controller
             'newReviews' => $newReviews,
         ]);
     }
+
+    public function show(Shop $shop)
+    {
+        $shop->load('reviews.user');
+
+        return Inertia::render('Shop/show',[
+            'shop' => $shop
+        ]);
+    }
+
+    public function detail(int $id)
+    {
+        $shop = Shop::with('reviews')->find($id);
+
+
+        // レビューを取得
+        $reviews = Review::with('user')
+        ->where('shop_id',$id)
+        ->orderBy('created_at','desc')
+        ->get();
+
+        return Inertia::render('Shop/Detail', [
+            'shop' => $shop,
+            'reviews' => $reviews,
+        ]);
+    }
 }
