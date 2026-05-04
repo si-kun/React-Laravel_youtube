@@ -41,7 +41,7 @@ const Detail = (props) => {
                     <Text>レビューがまだありません</Text>
                 )}
                 {props.reviews.map((review) => (
-                    <Box key={review.id} p={4} borderWidth={"1px"} borderRadius={"lg"} overflow={"hidden"} boxShadow={"lg"}>
+                    <Box key={review.id} p={4} borderWidth={"1px"} borderRadius={"lg"} overflow={"hidden"} boxShadow={"lg"} mb={4}>
                         <Text>{review.comment}</Text>
                         <Text textAlign={"right"} fontSize={"sm"}>{review.user.name}</Text>
                         <HStack>
