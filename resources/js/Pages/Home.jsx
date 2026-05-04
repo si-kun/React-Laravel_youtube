@@ -35,7 +35,10 @@ const Home = (props) => {
                             {import.meta.env.VITE_APP_NAME}
                         </Link>
                     </Heading>
-                    <HStack display={{ base: "none", md: "flex" }} fontWeight={"bold"}>
+                    <HStack
+                        display={{ base: "none", md: "flex" }}
+                        fontWeight={"bold"}
+                    >
                         <Link
                             href="#"
                             _hover={{ color: "gray.500" }}
@@ -55,7 +58,7 @@ const Home = (props) => {
                     <Box
                         display={{ base: "block", md: "none" }}
                         px={{ base: "0", md: "none" }}
-                        py={{base: "1", md: "none"}}
+                        py={{ base: "1", md: "none" }}
                     >
                         <Menu>
                             <MenuButton
@@ -115,38 +118,56 @@ const Home = (props) => {
             >
                 新着レビュー
             </Heading>
-            <VStack spacing={4} align={"stretch"}>
-                {props.newReviews.map((review) => (
-                    <Box
-                        key={review.id}
-                        p={4}
-                        align="stretch"
-                        borderWidth={"1px"}
-                        borderRadius={"lg"}
-                        overflow={"hidden"}
-                        boxShadow={"lg"}
-                    >
-                        <VStack align={"start"}>
-                            <Text fontWeight={"bold"}>{review.user.name}</Text>
-                            <Text>{review.comment}</Text>
-                            <HStack spacing={1}>
-                                {Array(5)
-                                    .fill("")
-                                    .map((_, index) => (
-                                        <StarIcon
-                                            key={index}
-                                            color={
-                                                index < review.rating
-                                                    ? "yellow.500"
-                                                    : "gray.300"
-                                            }
-                                        />
-                                    ))}
-                            </HStack>
-                        </VStack>
-                    </Box>
-                ))}
-            </VStack>
+            <Box py={"4"}>
+                <VStack spacing={4} align={"stretch"}>
+                    {props.newReviews.map((review) => (
+                        <Box
+                            key={review.id}
+                            p={4}
+                            align="stretch"
+                            borderWidth={"1px"}
+                            borderRadius={"lg"}
+                            overflow={"hidden"}
+                            boxShadow={"lg"}
+                        >
+                            <VStack align={"start"}>
+                                <Text fontWeight={"bold"}>
+                                    {review.user.name}
+                                </Text>
+                                <Text>{review.comment}</Text>
+                                <HStack spacing={1}>
+                                    {Array(5)
+                                        .fill("")
+                                        .map((_, index) => (
+                                            <StarIcon
+                                                key={index}
+                                                color={
+                                                    index < review.rating
+                                                        ? "yellow.500"
+                                                        : "gray.300"
+                                                }
+                                            />
+                                        ))}
+                                </HStack>
+                            </VStack>
+                        </Box>
+                    ))}
+                </VStack>
+            </Box>
+
+            {/* フッター */}
+            <Box>
+                <Box
+                    bg={"orange.700"}
+                    color={"white"}
+                    fontWeight={"bold"}
+                    textAlign={"center"}
+                >
+                    <Text fontSize={{base:"13", md:"16"}} py={{base: "2",md:"3"}}>
+                        &copy; 2026 {import.meta.env.VITE_APP_NAME}
+                    </Text>
+                </Box>
+            </Box>
         </>
     );
 };
